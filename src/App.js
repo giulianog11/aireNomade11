@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ItemListContainer, MainNav} from "./components";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { Home, Productos, ItemDetail } from "./pages";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+        <BrowserRouter> 
+          <MainNav/>
+          <ItemListContainer saludo={`PRODUCTOS DESTACADOS`} />
+          <Routes>
+            <Route path="/" element={ <Home/> } />
+            <Route path="/productos" element={ <Productos/> } />
+            <Route path="/productos/category/:name" element={ <Productos/> } />
+            <Route path="/productos/:id" element={ <ItemDetail/> } />
+          </Routes>
+        </BrowserRouter>
+      </>
   );
 }
 
